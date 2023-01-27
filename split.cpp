@@ -18,6 +18,27 @@ void split(Node*& in, Node*& odds, Node*& evens)
 {
   /* Add code here */
 // WRITE YOUR CODE HERE
+  if (in==nullptr){
+    return;
+  }
+  Node* nxt = in->next;
+  if (in->value%2==0){
+    addNode(evens, in);
+  }
+  else{
+    addNode(odds, in);
+  }
+  in = nxt;
+  split(in, odds, evens);
 }
 
 /* If you needed a helper function, write it here */
+void addNode(Node*& list, Node*& node){
+  if (list==nullptr){
+    list=node;
+    node->next=nullptr;
+  }
+  else{
+    addNode(list->next, node);
+  }
+}
